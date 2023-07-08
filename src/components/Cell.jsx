@@ -1,9 +1,35 @@
-import React from 'react'
+import React, { useState } from "react";
+import styled from "styled-components";
 
-export default function Cell() {
+export default function Cell () {
+    const [value, setValue] = useState("");
+
+    function isOnlyOneNumericalDigit(key, value) {
+        return (/^\d+$/.test(key)) && (value.length < 1)
+    }
+
   return (
     <div>
-        <input type="text" name="year" maxlength="1"  min="0" max="9" step="1" placeholder="X" pattern="[0-9]{1}"/>
+      <Input
+        type="text"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        onKeyPress={(e) => {
+          if (!isOnlyOneNumericalDigit(e.key, value) ){
+            e.preventDefault();
+          }
+        }}
+      />
     </div>
-  )
-}
+  );
+};
+
+const Input = styled.input`
+  width: 25px;
+  height: 30px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 20px;
+  text-align: center;
+`;
