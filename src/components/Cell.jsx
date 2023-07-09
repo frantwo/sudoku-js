@@ -1,30 +1,30 @@
-import React, { useState, useRef } from "react";
-import styled from "styled-components";
+import React, { useState, useRef } from 'react'
+import styled from 'styled-components'
 
-export default function Cell ({cellValue}) {
-    const [value, setValue] = useState(cellValue);
-    const inputEl = useRef(null);
+export default function Cell({ cellValue }) {
+  const [value, setValue] = useState(cellValue)
+  const inputEl = useRef(null)
 
-    const onKeyDown = (event) => {
-        console.log('event onkeydown:', event)
-        if (event.key.match(/^\d+$/)){
-            setValue(event.key);
-        }
+  const onKeyDown = (event) => {
+    console.log('event onkeydown:', event)
+    if (event.key.match(/^\d+$/)) {
+      setValue(event.key)
     }
+  }
 
-    function handleFocus() {
-        inputEl.current.select();
-    }
+  function handleFocus() {
+    inputEl.current.select()
+  }
 
-    return (
-        <Input
-        type="text"
-        ref={inputEl}
-        value={value}
-        onKeyDown={onKeyDown}
-        onFocus={handleFocus}
-        />
-    );
+  return (
+    <Input
+      type="text"
+      ref={inputEl}
+      value={value}
+      onKeyDown={onKeyDown}
+      onFocus={handleFocus}
+    />
+  )
 }
 
 const Input = styled.input`
@@ -37,4 +37,4 @@ const Input = styled.input`
   font-size: 20px;
   text-align: center;
   maxlenght: 1;
-`;
+`
