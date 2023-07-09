@@ -2,33 +2,29 @@ import React, { useState, useRef } from "react";
 import styled from "styled-components";
 
 export default function Cell ({cellValue}) {
-  const [value, setValue] = useState(cellValue);
-  const inputEl = useRef(null);
+    const [value, setValue] = useState(cellValue);
+    const inputEl = useRef(null);
 
-  const onChange = (event) => {
-    setValue(parseInt(event.target.value));
-  }
+    const onKeyDown = (event) => {
+        console.log('event onkeydown:', event)
+        if (event.key.match(/^\d+$/)){
+            setValue(event.key);
+        }
+    }
 
-  const onKeyDown = (event) => {
-    event.preventDefault();
-  }
+    function handleFocus() {
+        inputEl.current.select();
+    }
 
-  function handleFocus() {
-    inputEl.current.select();
-  }
-
-  return (
-    <Input
-      type="number"
-      ref={inputEl}
-      min="1"
-      max="9"
-      value={value}
-      onChange={onChange}
-      onKeyDown={onKeyDown}
-      onFocus={handleFocus}
-    />
-  );
+    return (
+        <Input
+        type="text"
+        ref={inputEl}
+        value={value}
+        onKeyDown={onKeyDown}
+        onFocus={handleFocus}
+        />
+    );
 }
 
 const Input = styled.input`
