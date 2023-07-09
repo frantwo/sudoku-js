@@ -1,35 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 
 export default function Cell () {
-    const [value, setValue] = useState("");
+  const [value, setValue] = useState("");
+  const inputEl = useRef(null);
 
-    function isOnlyOneNumericalDigit(key, value) {
-        return (/^\d+$/.test(key)) && (value.length < 1)
-    }
+  const onChange = (event) => {
+    setValue(parseInt(event.target.value));
+  }
+
+  const onKeyDown = (event) => {
+    event.preventDefault();
+  }
+
+  function handleFocus() {
+    inputEl.current.select();
+  }
 
   return (
-    <div>
-      <Input
-        type="text"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        onKeyPress={(e) => {
-          if (!isOnlyOneNumericalDigit(e.key, value) ){
-            e.preventDefault();
-          }
-        }}
-      />
-    </div>
+    <Input
+      type="number"
+      ref={inputEl}
+      min="1"
+      max="9"
+      value={value}
+      onChange={onChange}
+      onKeyDown={onKeyDown}
+      onFocus={handleFocus}
+    />
   );
-};
+}
 
 const Input = styled.input`
-  width: 25px;
+  width: 40px;
   height: 30px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 20px;
   text-align: center;
+  maxlenght: 1;
 `;
