@@ -1,8 +1,8 @@
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
 
-export default function Cell () {
-  const [value, setValue] = useState("");
+export default function Cell ({cellValue}) {
+  const [value, setValue] = useState(cellValue);
   const inputEl = useRef(null);
 
   const onChange = (event) => {

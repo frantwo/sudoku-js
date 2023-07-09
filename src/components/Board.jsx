@@ -15,9 +15,8 @@ export default function Board() {
       <h2>Tablero</h2>
       <Container>
         {
-          fillBoard().map((row) => row.map((col, inx)=> <Cell/>))
+          fillBoard().map((row) => row.map((col, inx)=> <Cell cellValue={""}/>))
         }
-        <Cell/>
       </Container>
     </>
   )
