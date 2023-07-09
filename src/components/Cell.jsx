@@ -35,6 +35,7 @@ const Input = styled.input`
   width: 40px;
   height: 30px;
   padding: 10px;
+  margin: 5px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 20px;
