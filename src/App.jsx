@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import './App.css'
-import Board from './components/board'
+import Board from './components/Board'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <div className="App">
-      <h1>Vite + React</h1>
+      <h1>SUDOKU</h1>
       <Board />
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
