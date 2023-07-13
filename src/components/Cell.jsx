@@ -2,12 +2,18 @@ import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 //
 // eslint-disable-next-line react/prop-types
-export default function Cell({ cellValue }) {
+export default function Cell({
+  // eslint-disable-next-line react/prop-types
+  cellValue, row, column,
+}) {
   const [value, setValue] = useState(cellValue);
   const inputEl = useRef(null);
 
+  console.table('cellValue:', value);
+  console.table('row:', row);
+  console.table('column:', column);
+
   const onKeyDown = (event) => {
-    console.log('event onkeydown:', event);
     if (event.key.match(/^\d+$/)) {
       setValue(event.key);
     }
@@ -22,7 +28,7 @@ export default function Cell({ cellValue }) {
       type="text"
       ref={inputEl}
       value={value}
-      onKeyDown={onKeyDown}
+      onKeyDown={(e) => onKeyDown(e)}
       onFocus={handleFocus}
     />
   );
